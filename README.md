@@ -1,65 +1,14 @@
 # Exoplanet Exploration
 
-![exoplanets.jpg](Images/exoplanets.jpg)
-
-## Background
-
-Over a period of nine years in deep space, the NASA Kepler space telescope has been out on a planet-hunting mission to discover hidden planets outside of our solar system.
-
-To help process this data, you will create machine learning models capable of classifying candidate exoplanets from the raw dataset.
-
-In this homework assignment, you will need to:
-
-1. [Preprocess the raw data](#Preprocessing)
-2. [Tune the models](#Tune-Model-Parameters)
-3. [Compare two or more models](#Evaluate-Model-Performance)
-
-- - -
-
-## Instructions
-
-### Preprocess the Data
-
-* Preprocess the raw dataset prior to fitting the model.
-* Perform feature selection and remove unnecessary features.
-* Use `MinMaxScaler` to scale the numerical data.
-* Separate the data into training and testing data.
-
-### Tune Model Parameters
-
-* Use `GridSearch` to tune model parameters.
-* Tune and compare at least two different classifiers.
-
-### Evaluate Model Performance
-
-Compare the performance of two or more classifiers to determine the best model performance.
-
-- - -
-
-## Resources
-
-* [Exoplanet Data Source](https://www.kaggle.com/nasa/kepler-exoplanet-search-results)
-
-* [Scikit-Learn Tutorial Part 1](https://www.youtube.com/watch?v=4PXAztQtoTg)
-
-* [Scikit-Learn Tutorial Part 2](https://www.youtube.com/watch?v=gK43gtGh49o&t=5858s)
-
-* [Grid Search](https://scikit-learn.org/stable/modules/grid_search.html)
-
-- - -
-
-## Hints and Considerations
-
-* Start by cleaning the data, removing unnecessary columns, and scaling the data.
-
-* Try a simple model first, and then tune the model using `GridSearch`.
-
-- - -
-
-## Submission
-
-* Create a Jupyter Notebook and host the notebook on GitHub.
-
-* Include a README.md file that summarizes your assumptions and findings.
-
-* Submit the link to your GitHub project to Bootcamp Spot.
+To predict correct clasification of exoplanets, I used the following models:
+ 1. SVC from sklearn with linear kernel, and achieved a 85% score on training data, and 84% score on test data
+ 2. I used GridSearch to find the best hyperparameters for SVC, which were identified to be C=50 and gamma=0.0001. With these parameters the training score was 89% and test score 88%
+ 3. Random Forest classifiers with n_estimators=200 and n_estimators=1000 achieved similar accuracy of 89.5%
+ 4. Before tuning, the logistic regression achieved accuracy of 83%, and after using the GridSearch on C value and penalty type, the accuracy improved to 87% with C=50 and penalty='l1'
+ 
+ 
+ Precision and Recall remain low in all models, particularly:
+ 1. low precision for CONFIRMED exoplanets. This means there are a many false positives
+ 2. low recall on CANDIDATE exoplanets, which means that many were missed
+ 
+ Conclusion: different models achived similar accuracy with Random Forest giving the best accuracy of 89.5%
